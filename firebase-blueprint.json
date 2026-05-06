@@ -1,0 +1,64 @@
+{
+  "entities": {
+    "User": {
+      "title": "User Profile",
+      "description": "User profile information and roles",
+      "type": "object",
+      "properties": {
+        "displayName": { "type": "string" },
+        "email": { "type": "string" },
+        "role": { "type": "string", "enum": ["customer", "admin"] },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["displayName", "email", "role"]
+    },
+    "Booking": {
+      "title": "Table Booking",
+      "description": "Details of a restaurant table reservation",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "userName": { "type": "string" },
+        "userEmail": { "type": "string" },
+        "date": { "type": "string" },
+        "time": { "type": "string" },
+        "guests": { "type": "number" },
+        "areaId": { "type": "string" },
+        "areaName": { "type": "string" },
+        "status": { "type": "string", "enum": ["pending", "confirmed", "cancelled", "rejected"] },
+        "notes": { "type": "string" },
+        "isArchived": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "date", "time", "guests", "areaId", "status"]
+    },
+    "SeatingArea": {
+      "title": "Seating Area",
+      "description": "Information about different parts of the restaurant",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "description": { "type": "string" },
+        "capacity": { "type": "number" },
+        "imageUrl": { "type": "string" },
+        "order": { "type": "number" }
+      },
+      "required": ["name", "description", "capacity"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "Store user profiles and roles"
+    },
+    "/bookings/{bookingId}": {
+      "schema": "Booking",
+      "description": "Store all table reservations"
+    },
+    "/seatingAreas/{areaId}": {
+      "schema": "SeatingArea",
+      "description": "Information about seating areas"
+    }
+  }
+}

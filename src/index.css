@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Inter:wght@100..900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Playfair Display", serif;
+  
+  --color-heritage-charcoal: #1a1a1a;
+  --color-heritage-brass: #c5a059;
+  --color-heritage-wood: #4a3728;
+  --color-heritage-cream: #f9f7f2;
+}
+
+@layer base {
+  body {
+    @apply bg-heritage-cream text-heritage-charcoal font-sans;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif;
+  }
+}
+
+.modern-grid {
+  background-size: 40px 40px;
+  background-image: linear-gradient(to right, rgba(26, 26, 26, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(26, 26, 26, 0.05) 1px, transparent 1px);
+}
