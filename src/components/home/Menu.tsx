@@ -27,15 +27,21 @@ export default function Menu() {
         </div>
 
         {/* Menu Items Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20">
-          <AnimatePresence mode="wait">
+        <AnimatePresence mode="wait">
+          <motion.div 
+            key={activeCategory}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20"
+          >
             {MENU_ITEMS.filter(item => item.category === activeCategory).map((item, i) => (
               <motion.div
                 key={item.name}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ delay: i * 0.1 }}
+                transition={{ delay: i * 0.05 }}
                 className="flex flex-col gap-4 group"
               >
                 <div className="flex justify-between items-end border-b border-heritage-charcoal/10 pb-4 relative">
@@ -46,8 +52,8 @@ export default function Menu() {
                 <p className="text-sm text-heritage-charcoal/50 leading-relaxed italic pr-20">{item.description}</p>
               </motion.div>
             ))}
-          </AnimatePresence>
-        </div>
+          </motion.div>
+        </AnimatePresence>
 
         <div className="mt-24 text-center">
           <button className="text-xs uppercase tracking-[0.4em] font-bold border-b-2 border-heritage-brass pb-2 hover:text-heritage-brass transition-colors">Download Full Menu PDF</button>
