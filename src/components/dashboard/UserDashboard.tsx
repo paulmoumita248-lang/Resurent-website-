@@ -46,8 +46,13 @@ export default function UserDashboard() {
     }
   };
 
-  const archiveBooking = async (id: string) => {
-    if (!confirm("Remove this booking from your dashboard? This will not delete the record.")) return;
+  const archiveBooking = async (id: string, status: string) => {
+    const isActive = status === 'pending' || status === 'confirmed';
+    const message = isActive 
+      ? "This is an active reservation. Are you sure you want to clear it from your dashboard? (It will not be cancelled)"
+      : "Remove this booking from your dashboard? This will not delete the record.";
+      
+    if (!confirm(message)) return;
     try {
       await updateDoc(doc(db, 'bookings', id), {
         isArchived: true,
@@ -203,16 +208,14 @@ export default function UserDashboard() {
                           Cancel
                         </button>
                       )}
-                      {(isPast || booking.status === 'cancelled' || booking.status === 'rejected') && (
-                        <button 
-                          onClick={() => archiveBooking(booking.id!)}
-                          className="flex items-center gap-2 text-xs font-bold text-heritage-charcoal/40 hover:text-heritage-charcoal transition-colors uppercase tracking-widest group/del"
-                          title="Clear from dashboard"
-                        >
-                          <Trash2 className="w-4 h-4 group-hover/del:text-red-500 transition-colors" />
-                          <span>Clear</span>
-                        </button>
-                      )}
+                      <button 
+                        onClick={() => archiveBooking(booking.id!, booking.status)}
+                        className="flex items-center gap-2 text-xs font-bold text-heritage-charcoal/30 hover:text-heritage-charcoal transition-colors uppercase tracking-widest group/del"
+                        title="Clear from dashboard"
+                      >
+                        <Trash2 className="w-4 h-4 group-hover/del:text-red-500 transition-colors" />
+                        <span>Clear</span>
+                      </button>
                     </div>
                   </div>
                 </motion.div>

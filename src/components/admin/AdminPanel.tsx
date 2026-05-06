@@ -57,6 +57,15 @@ export default function AdminPanel() {
     }
   };
 
+  const hardDeleteBooking = async (id: string) => {
+    if (!confirm("PERMANENTLY DELETE this record from the database? This cannot be undone.")) return;
+    try {
+      await deleteDoc(doc(db, 'bookings', id));
+    } catch (error) {
+      handleFirestoreError(error, OperationType.DELETE, `bookings/${id}`);
+    }
+  };
+
   const filteredBookings = bookings.filter(b => {
     const matchesArchive = showArchived ? b.isArchived === true : !b.isArchived;
     const matchesStatus = filterStatus === 'all' || b.status === filterStatus;
@@ -216,7 +225,7 @@ export default function AdminPanel() {
                         </div>
                       </td>
                       <td className="px-8 py-6">
-                        <div className="flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <div className="flex items-center gap-2 transition-opacity">
                           {booking.status === 'pending' && (
                             <button 
                               onClick={() => updateStatus(booking.id!, 'confirmed')}
@@ -250,6 +259,13 @@ export default function AdminPanel() {
                             title={showArchived ? "Restore" : "Clear from dashboard"}
                           >
                             <Trash2 className={`w-4 h-4 transition-colors ${showArchived ? 'text-green-600' : 'text-heritage-charcoal/40 group-hover/trash:text-red-500'}`} />
+                          </button>
+                          <button 
+                            onClick={() => hardDeleteBooking(booking.id!)}
+                            className="p-2 border border-red-100 bg-red-50 text-red-600 rounded-lg hover:bg-red-600 hover:text-white transition-colors"
+                            title="PERMANENT DELETE"
+                          >
+                            <Trash2 className="w-4 h-4" />
                           </button>
                         </div>
                       </td>
