@@ -17,6 +17,12 @@ export default function Navbar({ onBookClick, setView }: { onBookClick: () => vo
     } catch (error: any) {
       if (error.code === 'auth/popup-closed-by-user') return;
       console.error("Login failed:", error);
+      
+      if (error.code === 'auth/unauthorized-domain') {
+        alert("Domain Not Authorized: Please add this domain to your Firebase Console under 'Authentication > Settings > Authorized Domains'.");
+      } else {
+        alert(`Login Error: ${error.message}`);
+      }
     }
   };
 

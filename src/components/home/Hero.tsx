@@ -3,16 +3,30 @@ import { motion } from 'motion/react';
 import { ChevronRight, Star } from 'lucide-react';
 
 export default function Hero({ onBookClick }: { onBookClick: () => void }) {
+  const videoSource = "/Hand_pour_sauce_on_lamb_202605071246.mp4";
+  const fallbackImage = "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&q=80";
+
   return (
     <section id="home" className="relative h-screen flex items-center overflow-hidden bg-heritage-charcoal">
-      {/* Background Image with Overlay */}
-      <div className="absolute inset-0 z-0">
+      {/* Background Video with Overlay */}
+      <div className="absolute inset-0 z-0 text-heritage-charcoal">
         <img 
-          src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&q=80" 
-          alt="Restaurant Interior" 
-          className="w-full h-full object-cover opacity-40"
+          src={fallbackImage} 
+          alt="Restaurant Heritage" 
+          className="absolute inset-0 w-full h-full object-cover opacity-40"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-heritage-charcoal via-heritage-charcoal/80 to-transparent" />
+        <video 
+          key={videoSource}
+          autoPlay 
+          muted 
+          loop 
+          playsInline 
+          className="absolute inset-0 w-full h-full object-cover opacity-60"
+        >
+          <source src={videoSource} type="video/mp4" />
+        </video>
+        <div className="absolute inset-0 bg-gradient-to-r from-heritage-charcoal via-heritage-charcoal/60 to-transparent" />
+        <div className="absolute inset-0 bg-heritage-charcoal/20" />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
