@@ -12,12 +12,16 @@
 }
 
 @layer base {
+  html {
+    @apply scroll-smooth;
+  }
+
   body {
-    @apply bg-heritage-cream text-heritage-charcoal font-sans;
+    @apply bg-heritage-cream text-heritage-charcoal font-sans antialiased;
   }
   
   h1, h2, h3, h4, h5, h6 {
-    @apply font-serif;
+    @apply font-serif leading-tight;
   }
 }
 
@@ -26,3 +30,4 @@
   background-image: linear-gradient(to right, rgba(26, 26, 26, 0.05) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(26, 26, 26, 0.05) 1px, transparent 1px);
 }
+
