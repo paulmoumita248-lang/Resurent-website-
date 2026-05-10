@@ -24,10 +24,10 @@ export default function Contact() {
               viewport={{ once: true }}
             >
               <span className="text-xs uppercase tracking-[0.3em] font-bold text-heritage-brass mb-4 block">Get in Touch</span>
-              <h2 className="text-5xl md:text-6xl font-serif text-heritage-charcoal mb-8 leading-tight">
-                Let's Start a <br /><span className="italic">Conversation</span>
+              <h2 className="text-4xl md:text-6xl font-serif text-heritage-charcoal mb-6 md:mb-8 leading-tight">
+                Let's Start a <br /><span className="italic text-heritage-brass">Conversation</span>
               </h2>
-              <p className="text-heritage-charcoal/60 text-lg mb-12 max-w-md">
+              <p className="text-heritage-charcoal/60 text-base md:text-lg mb-8 md:mb-12 max-w-md">
                 Whether you're planning a private event, inquiring about our seasonal menu, or simply wish to share your experience, we'd love to hear from you.
               </p>
 
@@ -89,7 +89,7 @@ export default function Contact() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="bg-heritage-cream p-12 rounded-[3rem] border border-heritage-charcoal/5 shadow-2xl shadow-heritage-charcoal/5"
+            className="bg-heritage-cream p-6 sm:p-8 md:p-12 rounded-3xl md:rounded-[3rem] border border-heritage-charcoal/5 shadow-2xl shadow-heritage-charcoal/5"
           >
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
