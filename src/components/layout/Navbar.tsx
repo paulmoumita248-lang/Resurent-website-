@@ -33,7 +33,7 @@ export default function Navbar({ onBookClick, setView }: { onBookClick: () => vo
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-20 items-center">
           <div className="flex-shrink-0 flex items-center gap-2">
-            <span className="text-2xl font-serif font-bold tracking-tighter text-heritage-charcoal uppercase">
+            <span className="text-xl sm:text-2xl font-serif font-bold tracking-tighter text-heritage-charcoal uppercase">
               Heritage <span className="text-heritage-brass">Hearth</span>
             </span>
           </div>
