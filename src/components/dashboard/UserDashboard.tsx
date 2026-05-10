@@ -103,7 +103,7 @@ export default function UserDashboard() {
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-12">
           <div>
             <span className="text-xs uppercase tracking-[0.3em] font-bold text-heritage-brass mb-2 block">Personal Estate</span>
-            <h2 className="text-4xl md:text-5xl font-serif text-heritage-charcoal">Your <span className="italic">History</span> with Us</h2>
+            <h2 className="text-2xl sm:text-4xl md:text-5xl font-serif text-heritage-charcoal">Your <span className="italic">History</span> with Us</h2>
           </div>
           
           {/* Filters */}
@@ -141,35 +141,37 @@ export default function UserDashboard() {
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  className={`bg-white rounded-[2rem] p-8 border border-heritage-charcoal/5 shadow-sm hover:shadow-xl transition-all relative overflow-hidden group ${isPast ? 'grayscale-[0.5] opacity-80 bg-heritage-cream/10' : ''}`}
+                  className={`bg-white rounded-2xl md:rounded-[2rem] p-4 sm:p-8 border border-heritage-charcoal/5 shadow-sm hover:shadow-xl transition-all relative overflow-hidden group ${isPast ? 'grayscale-[0.5] opacity-80 bg-heritage-cream/10' : ''}`}
                 >
                   <div className={`absolute top-0 right-0 w-32 h-32 bg-heritage-brass/5 -mr-16 -mt-16 rounded-full blur-2xl group-hover:bg-heritage-brass/10 transition-colors ${isPast ? 'hidden' : ''}`} />
                   
-                  <div className="flex justify-between items-start mb-8">
+                  <div className="flex flex-wrap justify-between items-start gap-4 mb-8">
                     <div className={`flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold ${getStatusColor(booking.status)}`}>
                       {getStatusIcon(booking.status)}
                       <span className="uppercase tracking-widest">{booking.status}</span>
                     </div>
-                    {isPast && booking.status !== 'cancelled' && (
-                      <span className="text-[10px] text-heritage-brass font-bold uppercase tracking-widest bg-heritage-brass/10 px-3 py-1 rounded-full">Completed</span>
-                    )}
-                    <span className="text-[10px] text-heritage-charcoal/20 uppercase font-mono">Ref: {booking.id?.slice(0, 8)}</span>
+                    <div className="flex flex-col items-end">
+                      {isPast && booking.status !== 'cancelled' && (
+                        <span className="text-[10px] text-heritage-brass font-bold uppercase tracking-widest bg-heritage-brass/10 px-3 py-1 rounded-full mb-1">Completed</span>
+                      )}
+                      <span className="text-[10px] text-heritage-charcoal/20 uppercase font-mono">Ref: {booking.id?.slice(0, 8)}</span>
+                    </div>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-8 mb-8">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 mb-8">
                     <div className="space-y-4">
                       <div className="flex items-center gap-3">
                         <Calendar className={`w-5 h-5 ${isPast ? 'text-heritage-charcoal/40' : 'text-heritage-brass'}`} />
                         <div>
                           <p className="text-[10px] uppercase tracking-widest opacity-40 leading-none mb-1">Date</p>
-                          <p className={`font-serif text-lg ${isPast ? 'text-heritage-charcoal/60' : ''}`}>{booking.date}</p>
+                          <p className={`font-serif text-base sm:text-lg ${isPast ? 'text-heritage-charcoal/60' : ''}`}>{booking.date}</p>
                         </div>
                       </div>
                       <div className="flex items-center gap-3">
                         <Clock className={`w-5 h-5 ${isPast ? 'text-heritage-charcoal/40' : 'text-heritage-brass'}`} />
                         <div>
                           <p className="text-[10px] uppercase tracking-widest opacity-40 leading-none mb-1">Time</p>
-                          <p className={`font-serif text-lg ${isPast ? 'text-heritage-charcoal/60' : ''}`}>{booking.time}</p>
+                          <p className={`font-serif text-base sm:text-lg ${isPast ? 'text-heritage-charcoal/60' : ''}`}>{booking.time}</p>
                         </div>
                       </div>
                     </div>
@@ -178,14 +180,14 @@ export default function UserDashboard() {
                         <Users className={`w-5 h-5 ${isPast ? 'text-heritage-charcoal/40' : 'text-heritage-brass'}`} />
                         <div>
                           <p className="text-[10px] uppercase tracking-widest opacity-40 leading-none mb-1">Guests</p>
-                          <p className={`font-serif text-lg ${isPast ? 'text-heritage-charcoal/60' : ''}`}>{booking.guests} Pax</p>
+                          <p className={`font-serif text-base sm:text-lg ${isPast ? 'text-heritage-charcoal/60' : ''}`}>{booking.guests} Pax</p>
                         </div>
                       </div>
                       <div className="flex items-center gap-3">
                         <MapPin className={`w-5 h-5 ${isPast ? 'text-heritage-charcoal/40' : 'text-heritage-brass'}`} />
                         <div>
                           <p className="text-[10px] uppercase tracking-widest opacity-40 leading-none mb-1">Area</p>
-                          <p className={`font-serif text-lg ${isPast ? 'text-heritage-charcoal/60' : ''}`}>{booking.areaName}</p>
+                          <p className={`font-serif text-base sm:text-lg ${isPast ? 'text-heritage-charcoal/60' : ''}`}>{booking.areaName}</p>
                         </div>
                       </div>
                     </div>
